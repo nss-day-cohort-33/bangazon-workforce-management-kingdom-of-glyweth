@@ -3,7 +3,6 @@
 {% block content %}
     <h1>Training Program</h1>
 
-
     <form action="{% url 'hrapp:training_list' %}" method="post">
         {% csrf_token %}
         <fieldset>

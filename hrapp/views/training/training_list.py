@@ -19,6 +19,7 @@ def training_list(request):
                 t.end_date,
                 t.capacity
             from hrapp_training_program t
+            where t.start_date > date('now')
             """)
 
             all_programs = []
