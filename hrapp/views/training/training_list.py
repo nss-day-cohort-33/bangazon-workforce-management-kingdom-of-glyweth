@@ -10,7 +10,6 @@ def training_list(request):
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
-            # TODO: Add to query: e.department,
             db_cursor.execute("""
             select
                 t.id,
