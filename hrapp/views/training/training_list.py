@@ -1,7 +1,7 @@
 import sqlite3
 from django.shortcuts import render, redirect, reverse
 from hrapp.models import Training_Program
-from hrapp.views import *
+from ..connection import Connection
 
 
 def training_list(request):
@@ -48,7 +48,10 @@ def training_list(request):
             db_cursor = conn.cursor()
 
             db_cursor.execute("""
-            INSERT INTO hrapp_training_program (title, start_date, end_date, capacity)
+            INSERT INTO hrapp_training_program
+            (
+                title, start_date, end_date, capacity
+            )
             VALUES (?, ?, ?, ?)
             """,
             (form_data['title'], form_data['start_date'],
