@@ -33,6 +33,6 @@ media/
 migrations
 
 #db location
-views/connections.py
+hrapp/views/connections.py
 hrapp/views/connection.py
 README.md
