@@ -6,7 +6,7 @@
 <ol>
 {% for computer in computers %}
     <li>
-        <!-- <a href="{% url 'hrapp:computer' computer.id %}"> Computer</a> -->
+        <a href="{% url 'hrapp:computer' computer.id %}"> Computer</a>
         <p>Computer Make: {{computer.manufacturer}}</p>
         <p>Computer Model: {{computer.model}}</p>
     </li>
