@@ -3,7 +3,7 @@ from django.shortcuts import render
 # from django.shortcuts import redirect
 # from django.urls import reverse
 from hrapp.models import Computer
-from ..connections import Connection
+from ..connection import Connection
 
 def computer_list(request):
     # if request.method == "GET":

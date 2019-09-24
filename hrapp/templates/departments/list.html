@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Department</title>
+  </head>
+  <body>
+    <h1>Departments</h1>
+
+    <ol>
+    {% for each in all_departments %}
+      <a href="{% url 'hrapp:department' each.id %}"> {{ each.name }} </a>
+      <li>{{ each.budget }}</li>
+    {% endfor %}
+    </ol>
+    
+  </body>
+</html>
