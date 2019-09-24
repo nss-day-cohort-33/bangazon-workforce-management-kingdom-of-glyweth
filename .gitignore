@@ -33,4 +33,6 @@ media/
 migrations
 
 #db location
+views/connections.py
 views/connection.py
+README.md

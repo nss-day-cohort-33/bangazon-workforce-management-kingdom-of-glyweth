@@ -4,3 +4,6 @@ from .auth.logout import logout_user
 from .departments.list import department_list
 from .departments.form import department_form
 from .departments.details import department_details
+from .connections import Connection
+from .training.training_list import training_list
+from .training.form import training_form
