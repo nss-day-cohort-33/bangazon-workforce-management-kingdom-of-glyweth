@@ -3,7 +3,7 @@ from django.shortcuts import render
 from hrapp.models import Employee
 from hrapp.models import Department
 from django.contrib.auth.decorators import login_required
-from ..connections import Connection
+from ..connection import Connection
 
 @login_required
 def employee_list(request):

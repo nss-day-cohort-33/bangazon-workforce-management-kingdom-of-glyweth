@@ -2,7 +2,7 @@ import sqlite3
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from hrapp.models import Training_Program
-from ..connections import Connection
+from ..connection import Connection
 
 @login_required
 def training_form(request):

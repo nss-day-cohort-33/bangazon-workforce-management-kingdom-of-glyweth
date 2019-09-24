@@ -2,7 +2,7 @@ import sqlite3
 from django.shortcuts import render, reverse, redirect
 # from django.contrib.auth.decorators import login_required
 from hrapp.models import Department
-from ..connections import Connection
+from ..connection import Connection
 
 
 def get_departments():
@@ -29,7 +29,7 @@ def department_form(request):
             'all_departments': departments
         }
         return render(request, template, context)
-    
+
     elif request.method == 'POST':
         form_data = request.POST
 
