@@ -8,3 +8,9 @@ body {
 .main-content {
   padding: 1em 2em;
 }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
