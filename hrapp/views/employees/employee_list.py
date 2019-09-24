@@ -1,11 +1,12 @@
 import sqlite3
 from django.shortcuts import render
 from hrapp.models import Employee
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def employee_list(request):
     if request.method == 'GET':
-        with sqlite3.connect("/Users/joeshep/workspace/python/bangazon-workforce-boilerplate/bangazonworkforcemgt/db.sqlite3") as conn:
+        with sqlite3.connect("/Users/platt/workspace/python/bangazon-workforce-management-kingdom-of-glyweth/db.sqlite3") as conn:
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
@@ -15,7 +16,6 @@ def employee_list(request):
                 e.id,
                 e.first_name,
                 e.last_name,
-                e.start_date,
                 e.is_supervisor
             from hrapp_employee e
             """)
