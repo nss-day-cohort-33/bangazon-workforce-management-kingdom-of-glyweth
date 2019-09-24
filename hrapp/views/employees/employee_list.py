@@ -2,12 +2,13 @@ import sqlite3
 from django.shortcuts import render
 from hrapp.models import Employee
 from hrapp.models import Department
+from django.contrib.auth.decorators import login_required
 from ..connections import Connection
 
+@login_required
 def employee_list(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
-
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
