@@ -1,0 +1,32 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Training Program</h1>
+
+
+    <form action="{% url 'hrapp:training_list' %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <label for="name">Name: </label>
+            <input id="name" type="text" name="name">
+        </fieldset>
+        {% comment %} <fieldset>
+            <label for="discription">Discription: </label>
+            <input id="discription" type="text" name="discription">
+        </fieldset> {% endcomment %}
+        <fieldset>
+            <label for="start_date">Start Day: </label>
+            <input id="start_date" type="date" name="start_date">
+        </fieldset>
+        <fieldset>
+            <label for="end_date">End Day: </label>
+            <input id="end_date" type="date" name="end_date">
+        </fieldset>
+        <fieldset>
+            <label for="capactity">Max Capactity: </label>
+            <input id="capactity" type="text" name="capactity">
+        </fieldset>
+
+        <input type="submit" value="Add It" />
+    </form>
+{% endblock content %}
