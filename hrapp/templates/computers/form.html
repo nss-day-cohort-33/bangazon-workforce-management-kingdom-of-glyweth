@@ -1,12 +1,7 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Bangazon</title>
-  </head>
-  <body>
-    <h1>Inventory Book</h1>
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Add new Computer</h1>
 
 
     <form action="{% url 'hrapp:computers' %}" method="post">
@@ -21,11 +16,9 @@
       </fieldset>
       <fieldset>
           <label for="purchase_date">Date of Purchase: </label>
-          <input id="purchase_date" type="date" name="purchase_date">
+          <input id="purchase_date" type="date" name="purchase_date" default={{ date.today }}>
       </fieldset>
-      <fieldset>
-          <input id="decommission_date" type="hidden" name="decommission_date" value= "NULL">
-      </fieldset>
+          <!-- <input id="decommission_date" type="hidden" name="decommission_date" value= "NULL"> -->
       <fieldset>
           <label for="employee">Employee: </label>
           <select id="employee" type="text" name="employee">
@@ -37,5 +30,4 @@
 
       <input type="submit" value="Add It" />
     </form>
-  </body>
-</html>
+    {% endblock content %}
