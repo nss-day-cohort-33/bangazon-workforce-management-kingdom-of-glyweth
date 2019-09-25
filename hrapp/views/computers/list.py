@@ -4,7 +4,9 @@ from django.shortcuts import render
 # from django.urls import reverse
 from hrapp.models import Computer
 from ..connection import Connection
+# from django.contrib.auth.decorators import login_required
 
+# @login_required
 def computer_list(request):
     # if request.method == "GET":
         with sqlite3.connect(Connection.db_path) as conn:
