@@ -2,6 +2,7 @@ import sqlite3
 from django.shortcuts import render
 # from django.contrib.auth.decorators import login_required
 from hrapp.models import Department
+from hrapp.models import Employee
 from ..connection import Connection
 
 # @login_required
@@ -13,10 +14,13 @@ def department_list(request):
 
             db_cursor.execute("""
             select
-                dep.id,
+                count(department_id),
                 dep.name,
                 dep.budget
-            from hrapp_department dep
+            from hrapp_employee emp
+            inner join hrapp_department dep
+            on emp.department_id = dep.id
+            group by department_id
             """)
 
             all_departments = []
@@ -24,11 +28,14 @@ def department_list(request):
 
             for row in dataset:
                 dep = Department()
+                emp = Employee()
                 dep.id = row["id"]
                 dep.name = row["name"]
                 dep.budget = row["budget"]
+                emp.department_id = row["department_id"]
 
                 all_departments.append(dep)
+                all_departments.append(emp)
 
         template_name = 'departments/list.html'
 
