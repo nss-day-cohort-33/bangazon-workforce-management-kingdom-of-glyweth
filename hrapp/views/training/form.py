@@ -23,7 +23,7 @@ def get_training():
 
         return db_cursor.fetchall()
 
-# @login_required
+@login_required
 def training_form(request):
     if request.method == 'GET':
         training = get_training()
@@ -32,21 +32,3 @@ def training_form(request):
             'all_training': training
         }
         return render(request, template, context)
-
-    elif request.method == 'POST':
-        form_data = request.POST
-
-    with sqlite3.connect(Connection.db_path) as conn:
-        db_cursor = conn.cursor()
-
-        db_cursor.execute("""
-        INSERT INTO hrapp_training_program
-        (
-            name, budget
-        )
-        VALUES (?, ?)
-        """,
-        (form_data['name'], form_data['budget'])
-        )
-
-        return redirect(reverse('hrapp:training'))
