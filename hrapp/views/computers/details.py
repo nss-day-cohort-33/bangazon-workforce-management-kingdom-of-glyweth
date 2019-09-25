@@ -13,20 +13,21 @@ def get_computer(computer_id):
 
         db_cursor.execute("""
         select
-            c.id
+            c.id,
             c.manufacturer,
             c.model,
             c.purchase_date,
             c.decommission_date
-        from hrapp_computer c;
-        """)
+        from hrapp_computer c
+        WHERE c.id = ?
+        """, (computer_id,))
 
         return db_cursor.fetchone()
 
 def computer_details(request, computer_id):
     if request.method == 'GET':
         computer = get_computer(computer_id)
-        template = 'computers/detail.html'
+        template = 'computers/details.html'
         context = {
             'computer': computer
         }
