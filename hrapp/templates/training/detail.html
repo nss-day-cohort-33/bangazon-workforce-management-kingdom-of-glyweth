@@ -6,4 +6,10 @@
 
     <div>{{ training.capacity }}</div>
     <div>{{ training.description }}</div>
+
+    <form action="{% url 'hrapp:training' training.training_id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
 {% endblock content %}
