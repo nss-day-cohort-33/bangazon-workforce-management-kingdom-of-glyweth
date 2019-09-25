@@ -34,4 +34,7 @@ migrations
 #db location
 hrapp/views/connections.py
 hrapp/views/connection.py
-README.md
+
+#this is a file we might use later
+#gitignore now so it's never traced
+hrapp/views/xion.py
