@@ -19,18 +19,7 @@ def get_department(department_id):
             from hrapp_department dep
         WHERE dep.id = ?
         """, (department_id,))
-
-#  db_cursor.execute("""
-#         select
-#             emp.id,
-#             emp.first_name,
-#             emp.last_name,
-#             dep.name,
-#             dep.budget
-#             from hrapp_employee emp
-#             join hrapp_department dep on emp.department_id = dep.id
-#         WHERE dep.id = ?
-#         """, (department_id,))
+#how is this portion affected by what's happening in "department list"?
 
         return db_cursor.fetchone()
 

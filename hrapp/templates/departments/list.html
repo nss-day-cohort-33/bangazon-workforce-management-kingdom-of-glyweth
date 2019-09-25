@@ -10,8 +10,9 @@
 
     <ol>
     {% for each in all_departments %}
-      <a href="{% url 'hrapp:department' each.id %}"> {{ each.name }} </a>
-      <li>{{ each.budget }}</li>
+      <a href="{% url 'hrapp:department' each.id %}"><h3> {{ each.name }} </h3> </a>
+      <div>The budget for this company is ${{ each.budget }}</div>
+      <div>and, the number of employees is: {{ each.employee_count }}</div>
     {% endfor %}
     </ol>
 

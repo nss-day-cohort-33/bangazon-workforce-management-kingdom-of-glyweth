@@ -14,7 +14,8 @@ def department_list(request):
 
             db_cursor.execute("""
             select
-                count(department_id),
+                count(department_id) as employee_count,
+                dep.id,
                 dep.name,
                 dep.budget
             from hrapp_employee emp
@@ -28,14 +29,12 @@ def department_list(request):
 
             for row in dataset:
                 dep = Department()
-                emp = Employee()
                 dep.id = row["id"]
+                dep.employee_count = row["employee_count"]
                 dep.name = row["name"]
                 dep.budget = row["budget"]
-                emp.department_id = row["department_id"]
 
                 all_departments.append(dep)
-                all_departments.append(emp)
 
         template_name = 'departments/list.html'
 
