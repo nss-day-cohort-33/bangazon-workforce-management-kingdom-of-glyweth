@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Training Program Details</title>
+  </head>
+  <body>
+    <h1>{{ training.title }}</h1>
+    <h2>{{ training.start_date }} - {{ training.end_date }}</h2>
+
+    <div>{{ training.capacity }}</div>
+    <div>{{ training.description }}</div>
+  </body>
+</html>

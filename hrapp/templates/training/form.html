@@ -3,17 +3,12 @@
 {% block content %}
     <h1>Training Program</h1>
 
-
     <form action="{% url 'hrapp:training_list' %}" method="post">
         {% csrf_token %}
         <fieldset>
-            <label for="name">Name: </label>
-            <input id="name" type="text" name="name">
+            <label for="title">Title: </label>
+            <input id="title" type="text" name="title">
         </fieldset>
-        {% comment %} <fieldset>
-            <label for="discription">Discription: </label>
-            <input id="discription" type="text" name="discription">
-        </fieldset> {% endcomment %}
         <fieldset>
             <label for="start_date">Start Day: </label>
             <input id="start_date" type="date" name="start_date">
@@ -23,8 +18,12 @@
             <input id="end_date" type="date" name="end_date">
         </fieldset>
         <fieldset>
-            <label for="capactity">Max Capactity: </label>
-            <input id="capactity" type="text" name="capactity">
+            <label for="capacity">Max Capactity: </label>
+            <input id="capacity" type="text" name="capacity">
+        </fieldset>
+        <fieldset>
+            <label for="description">Description: </label>
+            <input id="description" type="text" name="description">
         </fieldset>
 
         <input type="submit" value="Add It" />
