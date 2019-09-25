@@ -1,11 +1,11 @@
 import sqlite3
 from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 from hrapp.models import Department
 from hrapp.models import Employee
 from ..connection import Connection
 
-# @login_required
+@login_required
 def department_list(request):
     if request.method == "GET":
         with sqlite3.connect(Connection.db_path) as conn:
