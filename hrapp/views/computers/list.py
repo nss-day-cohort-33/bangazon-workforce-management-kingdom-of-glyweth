@@ -13,6 +13,7 @@ def computer_list(request):
 
             db_cursor.execute("""
             select
+                c.id,
 				c.manufacturer,
 				c.model,
 				c.purchase_date,
@@ -25,6 +26,7 @@ def computer_list(request):
 
             for row in dataset:
                 computer = Computer()
+                computer.id = row['id']
                 computer.manufacturer = row['manufacturer']
                 computer.model = row['model']
                 computer.purchase_date = row['purchase_date']
