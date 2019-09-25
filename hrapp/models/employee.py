@@ -8,6 +8,7 @@ class Employee(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True)
     is_supervisor = models.BooleanField()
     # department = models.ForeignKey(Department, on_delete=models.CASCADE)
 

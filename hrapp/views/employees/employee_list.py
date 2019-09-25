@@ -18,6 +18,7 @@ def employee_list(request):
                 e.first_name,
                 e.last_name,
                 e.is_supervisor,
+                e.start_date,
                 e.department_id,
                 d.name
             FROM hrapp_employee e LEFT JOIN hrapp_department d ON e.department_id = d.id;
@@ -32,6 +33,7 @@ def employee_list(request):
                 employee.first_name = row['first_name']
                 employee.last_name = row['last_name']
                 employee.is_supervisor = row['is_supervisor']
+                employee.start_date = row['start_date']
                 employee.department_id = row['department_id']
 
                 department = Department()
