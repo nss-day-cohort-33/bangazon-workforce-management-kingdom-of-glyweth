@@ -6,7 +6,7 @@ from hrapp.models import Computer
 from ..connection import Connection
 
 def computer_list(request):
-    # if request.method == "GET":
+    if request.method == "GET":
         with sqlite3.connect(Connection.db_path) as conn:
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
@@ -41,3 +41,17 @@ def computer_list(request):
         }
         #In DJANGO you have to manually wire up URLs
         return render(request, template, context)
+    elif request.method == 'POST':
+        form_data = request.Post
+
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+
+            db_cursor.execute("""
+            INSERT INTO hrapp_computer
+            (
+                purchase_date, decommission_date, manufacturer, model
+            )
+            VALUES (?, ?, ?, ?)
+            """,
+                (form_data['purchase_date'], 
