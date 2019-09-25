@@ -12,7 +12,7 @@
         <h1><a href="{% url 'hrapp:training' program.id %}"> {{ program.title }} </a></h1>
         <p>{{ program.start_date }} - {{ program.end_date }}</p>
         <p>{{ program.capacity }} seats</p>
-        <p>Description:{{ program.description }}</p>
+        <p>Description: {{ program.description }}</p>
     </li>
 {% endfor %}
 </ol>
