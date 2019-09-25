@@ -14,5 +14,4 @@ from .connection import Connection
 
 from .training.training_list import training_list
 from .training.form import training_form
-from .training.form import training_form
 from .training.details import training_details
