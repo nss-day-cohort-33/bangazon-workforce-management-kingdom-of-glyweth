@@ -5,12 +5,14 @@
 
 <a href="{% url 'hrapp:training_form' %}">Add Program</a>
 
+<p>Upcoming training programs</p>
 <ol>
 {% for program in training %}
     <li>
-        <h1>{{ program.title }}</h1>
+        <h1><a href="{% url 'hrapp:training' program.id %}"> {{ program.title }} </a></h1>
         <p>{{ program.start_date }} - {{ program.end_date }}</p>
         <p>{{ program.capacity }} seats</p>
+        <p>Description: {{ program.description }}</p>
     </li>
 {% endfor %}
 </ol>

@@ -18,9 +18,4 @@ class Computer(models.Model):
     purchase_date = models.DateField()
     decommission_date = models.DateField(null=True, blank=True, default=None)
 
-    # class Meta:
-    #     verbose_name = ("Computer")
-    #     verbose_name_plural = ("Computers")
 
-    # def get_absolute_url(self):
-    #     return reverse("Computer_detail", kwargs={"pk": self.pk})
