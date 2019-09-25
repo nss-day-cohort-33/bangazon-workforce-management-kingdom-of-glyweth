@@ -8,7 +8,7 @@ class Training_Program(models.Model):
     end_date = models.DateField(null=True, blank=True, default=None)
     capacity = models.IntegerField()
     description = models.CharField(null=True, max_length=300)
-    
+
 
     # class Meta:
     #     verbose_name = ("TrainingProgram")
