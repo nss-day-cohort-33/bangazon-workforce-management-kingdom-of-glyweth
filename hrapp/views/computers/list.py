@@ -1,7 +1,7 @@
 import sqlite3
 from django.shortcuts import render
-# from django.shortcuts import redirect
-# from django.urls import reverse
+from django.shortcuts import redirect
+from django.urls import reverse
 from hrapp.models import Computer
 from ..connection import Connection
 
@@ -42,7 +42,7 @@ def computer_list(request):
         #In DJANGO you have to manually wire up URLs
         return render(request, template, context)
     elif request.method == 'POST':
-        form_data = request.Post
+        form_data = request.POST
 
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
@@ -54,4 +54,6 @@ def computer_list(request):
             )
             VALUES (?, ?, ?, ?)
             """,
-                (form_data['purchase_date'], 
+                (form_data['purchase_date'], form_data['decommission_date'], form_data['manufacturer'], form_data['model']))
+
+        return redirect(reverse('hrapp:computers'))
