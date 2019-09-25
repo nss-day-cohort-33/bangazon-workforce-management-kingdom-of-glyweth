@@ -3,15 +3,15 @@
 {% block content %}
     <h1>Training Program</h1>
 
-    <form action="{% url 'hrapp:training_list' %}" method="post">
+    <form action="{% url 'hrapp:training_form' %}" method="post">
         {% csrf_token %}
         <fieldset>
             <label for="name">Name: </label>
             <input id="name" type="text" name="name">
         </fieldset>
         <fieldset>
-            <label for="discription">Discription: </label>
-            <input id="discription" type="text" name="discription">
+            <label for="description">Description: </label>
+            <input id="description" type="text" name="description">
         </fieldset>
         <fieldset>
             <label for="start_date">Start Day: </label>
