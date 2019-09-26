@@ -5,7 +5,7 @@ from hrapp.models import Training_Program
 from ..connection import Connection
 
 
-def get_training():
+def get_training(training_id):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -31,4 +31,17 @@ def training_form(request):
         context = {
             'all_training': training
         }
+        return render(request, template, context)
+
+@login_required
+def training_edit_form(request, training_id):
+
+    if request.method == 'GET':
+        training = get_training(training_id)
+
+        template = 'training/form.html'
+        context = {
+            'training': training
+        }
+
         return render(request, template, context)

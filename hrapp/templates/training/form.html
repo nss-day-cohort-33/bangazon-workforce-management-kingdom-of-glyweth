@@ -3,7 +3,11 @@
 {% block content %}
     <h1>Training Program</h1>
 
-    <form action="{% url 'hrapp:training_list' %}" method="post">
+    {% if training.training_id is not None %}
+        <form action="{% url 'hrapp:training' training.training_id %}" method="post">
+    {% else %}
+        <form action="{% url 'hrapp:training_list' %}" method="post">
+    {% endif %}
         {% csrf_token %}
         <fieldset>
             <label for="title">Title: </label>
@@ -26,6 +30,11 @@
             <input id="description" type="text" name="description">
         </fieldset>
 
-        <input type="submit" value="Add It" />
+        {% if training.training_id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
     </form>
 {% endblock content %}
