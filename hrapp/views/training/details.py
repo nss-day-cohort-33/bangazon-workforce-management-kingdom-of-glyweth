@@ -63,7 +63,7 @@ def training_details(request, training_id):
                     form_data["description"], training_id,
                 ))
 
-            return redirect(reverse('hrapp:training'))
+            return redirect(reverse('hrapp:training_list'))
 
         # Check if this POST is for deleting
         if (

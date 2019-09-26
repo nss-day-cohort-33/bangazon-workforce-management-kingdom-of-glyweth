@@ -3,8 +3,8 @@
 {% block content %}
     <h1>Training Program</h1>
 
-    {% if training.id is not None %}
-        <form action="{% url 'hrapp:training' training.id %}" method="post">
+    {% if training.training_id is not None %}
+        <form action="{% url 'hrapp:training' training.training_id %}" method="post">
     {% else %}
         <form action="{% url 'hrapp:training_list' %}" method="post">
     {% endif %}
@@ -30,7 +30,7 @@
             <input id="description" type="text" name="description" value="{{ training.description }}">
         </fieldset>
 
-        {% if training.id is not None %}
+        {% if training.training_id is not None %}
             <input type="hidden" name="actual_method" value="PUT">
             <input type="submit" value="Update" />
         {% else %}
