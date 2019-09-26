@@ -7,13 +7,16 @@
     <div>Max: {{ training.capacity }}</div>
     <div>Note: {{ training.description }}</div>
 
-    <form action="{% url 'hrapp:training_edit_form' training.training_id %}" method="GET">
-        {% csrf_token %}
-        <button>Edit</button>
-    </form>
-    <form action="{% url 'hrapp:training' training.training_id %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="actual_method" value="DELETE">
-        <button>Delete</button>
-    </form>
+    <section id="book-actions" style="display:flex;">
+        <form action="{% url 'hrapp:training' training.training_id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+        </form>
+
+        <form action="{% url 'hrapp:training_edit_form' training.training_id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+        </form>
+    </section>
 {% endblock content %}
