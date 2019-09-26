@@ -25,4 +25,5 @@ urlpatterns = [
     path('training/<int:training_id>/', training_details, name='training'),
     # path('training/<int:training_program_id>/', training_details, name='training'),
     path('training/form', training_form, name='training_form'),
+    path('employees/form', employees_form, name='employees_form')
 ]

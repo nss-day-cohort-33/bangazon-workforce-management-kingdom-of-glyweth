@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %} {% block content %}
+<form action="{% url 'hrapp:employees' %}" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <label for="last_name">Last Name: </label>
+    <input id="last_name" type="text" name="last_name" />
+  </fieldset>
+  <fieldset>
+    <label for="first_name">First Name: </label>
+    <input id="first_name" type="text" name="first_name" />
+  </fieldset>
+  <fieldset>
+    <label for="supervisor">Supervisor: </label>
+    <input id="supervisor" type="text" name="supervisor" />
+  </fieldset>
+  <fieldset>
+    <label for="start_date">Start Date: </label>
+    <input id="start_date" type="date" name="start_date" />
+  </fieldset>
+  <fieldset>
+    <label for="department">Department: </label>
+    <input id="department" type="text" name="department" />
+  </fieldset>
+
+  <input type="submit" value="Add It" />
+</form>
+{% endblock content %}
