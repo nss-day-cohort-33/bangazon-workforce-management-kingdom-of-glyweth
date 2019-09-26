@@ -13,5 +13,6 @@ from .departments.details import department_details
 from .connection import Connection
 
 from .training.training_list import training_list
-from .training.form import training_form
+from .training.past_training import past_training
+from .training.form import training_form, training_edit_form
 from .training.details import training_details
