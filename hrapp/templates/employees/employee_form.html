@@ -1,5 +1,5 @@
 {% extends 'shared/base.html' %} {% block content %}
-<form action="{% url 'hrapp:employees' %}" method="post">
+<form action="{% url 'hrapp:employee_list' %}" method="post">
   {% csrf_token %}
   <fieldset>
     <label for="last_name">Last Name: </label>
@@ -19,7 +19,11 @@
   </fieldset>
   <fieldset>
     <label for="department">Department: </label>
-    <input id="department" type="text" name="department" />
+    <select id="department" type="text" name="department">
+      {% for department in all_departments %}
+      <option value="{{ dep.id }}">{{ dep.name }}</option>
+      {% endfor %}
+    </select>
   </fieldset>
 
   <input type="submit" value="Add It" />
