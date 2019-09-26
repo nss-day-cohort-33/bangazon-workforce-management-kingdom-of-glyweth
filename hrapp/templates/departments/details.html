@@ -1,19 +1,14 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Department</title>
-  </head>
-  <body>
-    <h1>{{ department.name }}</h1>
-    <h3>The budget for this departments is ${{ department.budget }}</h3>
-    <h3>Employees within {{department.name}} are: (listed here)</h3>
-
-    <form action="{% url 'hrapp:department' department.id %}" method="POST">
-      {% csrf_token %}
-      <input type="hidden" name="actual_method" value="DELETE">
-      <button>Delete</button>
-    </form>
-  </body>
-</html>
+{% extends 'shared/base.html' %} {% block content %}
+  <h1>Department</h1>
+  {% for each in department_employees %} 
+  <h1>{{ each.name }}</h1>
+  <h3>The budget for this departments is ${{ each.budget }}</h3>
+  <ul>
+  <h3>Employees within the department are:</h3>
+  {% for employee in each.employee %}
+    <li>{{ employee.first_name }} {{ employee.last_name }}</li>
+    
+  {% endfor %}
+  {% endfor %}
+  </ul>
+  {% endblock content %}
