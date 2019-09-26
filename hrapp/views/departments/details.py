@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 # from django.contrib.auth.decorators import login_required
 from hrapp.models import Department
+from hrapp.models import Employee
 from ..connection import Connection
 
 
@@ -23,32 +24,14 @@ def get_department(department_id):
         WHERE dep.id = ?
         """, (department_id,))
 
-        return db_cursor.fetchone()
+        return db_cursor.fetchall()
 
 
-        # all_departments = []
-        #     dataset = db_cursor.fetchall()
-
-        #     for row in dataset:
-        #         dep = Department()
-        #         dep.id = row["id"]
-        #         dep.employee_count = row["employee_count"]
-        #         dep.name = row["name"]
-        #         dep.budget = row["budget"]
-
-        #         all_departments.append(dep)
-    #MELANIE! Don't panic... you need to figure out whether you want to get all the employees
-    # or just get one table that is for the one department ID.
-    #In the SQL call, when I specified "1" as the dep.id, it showed me a table of all the employees
-    # that go with dep.id = 1.
-    #So this SQL call is bringing in more than one value but it is still only fetching the ID of
-    # one department.
-    #I may need advice from Stack Overflow or from Joe and Steve...
-
-# @login_required
 def department_details(request, department_id):
     if request.method == 'GET':
         department = get_department(department_id)
+        with sqlite3.connect(Connection.db_path) as conn:
+            conn.row_factory = create_list_employees
 
         template = 'departments/details.html'
         context = {
@@ -57,19 +40,30 @@ def department_details(request, department_id):
 
         return render(request, template, context)
 
-    if request.method == 'POST':
-        form_data = request.POST
+def create_list_employees(cursor, row):
+    _row = sqlite3.Row(cursor, row)
 
-        if (
-            "actual_method" in form_data
-            and form_data["actual_method"] == "DELETE"
-        ):
-            with sqlite3.connect(Connection.db_path) as conn:
-                db_cursor = conn.cursor()
+    department = Department()
+    department.id = _row["id"]
+    department.name = _row["name"]
+    department.budget = _row["budget"]
 
-                db_cursor.execute("""
-                DELETE FROM hrapp_department
-                WHERE id = ?
-                """, (department_id,))
+    department.employees = []
 
-            return redirect(reverse('hrapp:departments'))
+    employee = Employee()
+    employee.department_id = _row["department_id"]
+    employee.first_name = _row["first_name"]
+    employee.last_name = _row["last_name"]
+
+    department_employees = {}
+
+    for (department, employee) in department:
+
+        if department.id not in department_employees:
+            department_employees[department.id] = department
+            department_employees[department.id].employees.append(employee)
+
+        else:
+            department_employees[department.id].employees.append(employee)
+
+    return (department, employee,)
