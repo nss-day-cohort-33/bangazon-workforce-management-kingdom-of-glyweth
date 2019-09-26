@@ -3,12 +3,14 @@
 {% block content %}
 <h1>Computers</h1>
 
+<a href="{% url 'hrapp:computer_form' %}">Add a new computer</a>
+
 <ol>
 {% for computer in computers %}
     <li>
-        <a href="{% url 'hrapp:computer' computer.id %}"> Computer</a>
-        <p>Computer Make: {{computer.manufacturer}}</p>
-        <p>Computer Model: {{computer.model}}</p>
+        <a href="{% url 'hrapp:computer' computer.id %}"> {{computer.manufacturer}} {{computer.model}} </a>
+        <!-- <p>Computer Make: {{computer.manufacturer}}</p>
+        <p>Computer Model: {{computer.model}}</p> -->
     </li>
 {% endfor %}
 </ol>
