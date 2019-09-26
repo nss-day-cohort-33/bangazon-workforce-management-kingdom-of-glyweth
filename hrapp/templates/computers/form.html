@@ -1,0 +1,33 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Add new Computer</h1>
+
+
+    <form action="{% url 'hrapp:computers' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="manufacturer">Manufacturer: </label>
+          <input id="manufacturer" type="text" name="manufacturer">
+      </fieldset>
+      <fieldset>
+          <label for="model">Model: </label>
+          <input id="model" type="text" name="model">
+      </fieldset>
+      <fieldset>
+          <label for="purchase_date">Date of Purchase: </label>
+          <input id="purchase_date" type="date" name="purchase_date" default={{ date.today }}>
+      </fieldset>
+          <!-- <input id="decommission_date" type="hidden" name="decommission_date" value= "NULL"> -->
+      <fieldset>
+          <label for="employee">Employee: </label>
+          <select id="employee" type="text" name="employee">
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.first_name }} {{employee.last_name}}</option>
+                {% endfor %}
+          </select>
+      </fieldset>
+
+      <input type="submit" value="Add It" />
+    </form>
+    {% endblock content %}

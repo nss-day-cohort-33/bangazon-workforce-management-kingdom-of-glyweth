@@ -6,4 +6,12 @@
     <h4>Purchase Date {{ computer.purchase_date}}</h4>
     <h4>Decommission Date: {{ computer.decommission_date }}</h4>
 
+        {% if user.is_authenticated == True %}
+    <form action="{% url 'hrapp:computer' computer.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="actual_method" value="DELETE">
+        <button>Delete</button>
+    </form>
+        {% endif %}
+
 {% endblock content %}
