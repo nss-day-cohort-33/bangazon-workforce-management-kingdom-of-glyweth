@@ -1,6 +1,6 @@
 {% extends 'shared/base.html' %} {% block content %}
 <h1>Departments</h1>
-
+<a href="{% url 'hrapp:department_form' %}">Add Department</a>
     <ol>
     {% for each in all_departments %}
       <a href="{% url 'hrapp:department' each.id %}"><h3> {{ each.name }} </h3> </a>
@@ -9,5 +9,4 @@
     {% endfor %}
     </ol>
 
-  </body>
-</html>
+{% endblock content %}
