@@ -45,9 +45,9 @@ def employee_list(request):
 
                 all_employees.append(employee)
 
-    template = 'employees/employees_list.html'
-    context = {
-        'employees': all_employees
-    }
+            template = 'employees/employees_list.html'
+            context = {
+                'employees': all_employees
+            }
 
-    return render(request, template, context)
+            return render(request, template, context)
