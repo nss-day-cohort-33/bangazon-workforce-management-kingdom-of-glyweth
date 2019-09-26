@@ -1,13 +1,15 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>{{ training.title }}</h1>
-    <h2>{{ training.start_date }} through {{ training.end_date }}</h2>
+    <section id="training-details">
+        <h1>{{ training.title }}</h1>
+        <h2>{{ training.start_date }} through {{ training.end_date }}</h2>
 
-    <div>Max: {{ training.capacity }}</div>
-    <div>Note: {{ training.description }}</div>
+        <div>Max: {{ training.capacity }}</div>
+        <div>Note: {{ training.description }}</div>
+    </section>
 
-    <section id="book-actions" style="display:flex;">
+    <section id="training-actions" style="display:flex;">
         <form action="{% url 'hrapp:training' training.training_id %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE">
