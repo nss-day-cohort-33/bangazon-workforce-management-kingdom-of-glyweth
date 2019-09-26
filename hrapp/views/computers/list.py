@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from hrapp.models import Computer
 from ..connection import Connection
+from datetime import date
 # from django.contrib.auth.decorators import login_required
 
 # @login_required
@@ -45,9 +46,11 @@ def computer_list(request):
         return render(request, template, context)
     elif request.method == 'POST':
         form_data = request.POST
+        last_id = None
 
         with sqlite3.connect(Connection.db_path) as conn:
             db_cursor = conn.cursor()
+            # put_null = None
 
             db_cursor.execute("""
             INSERT INTO hrapp_computer
@@ -57,5 +60,24 @@ def computer_list(request):
             VALUES (?, ?, ?)
             """,
                 (form_data['purchase_date'], form_data['manufacturer'], form_data['model']))
+
+            db_cursor.execute("""
+            select last_insert_rowid() """)
+
+            last_id = db_cursor.fetchone()
+
+        if form_data['employee'] != None:
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+                date_of_assign = date.today().strftime("%Y/%m/%d")
+                put_null = None
+
+                db_cursor.execute("""
+                INSERT INTO hrapp_computer_employee (assign_date, unassign_date, computer_id, employee_id)
+
+                values (?, ?, ?, ?)
+                """,
+
+                (date_of_assign, put_null, last_id[0], form_data['employee']))
 
         return redirect(reverse('hrapp:computers'))
