@@ -3,9 +3,7 @@
 {% block content %}
 <h1>Training Programs</h1>
 
-<a href="{% url 'hrapp:training_form' %}">Add Program</a>
-
-<p>Upcoming training programs</p>
+<p>Past programs</p>
 <ol>
 {% for program in training %}
     <li>
@@ -14,5 +12,4 @@
     </li>
 {% endfor %}
 </ol>
-<a href="{% url 'hrapp:past_training' %}">View Past Programs</a>
 {% endblock content %}
