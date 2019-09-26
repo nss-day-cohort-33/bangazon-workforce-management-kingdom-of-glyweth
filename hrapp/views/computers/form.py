@@ -2,6 +2,7 @@ import sqlite3
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from hrapp.models import Computer
 from hrapp.models import employee
 from ..connection import Connection
@@ -25,7 +26,7 @@ def get_employees():
         return db_cursor.fetchall()
 
 
-
+@login_required
 def computer_form(request):
     if request.method == "GET":
         employees = get_employees()
